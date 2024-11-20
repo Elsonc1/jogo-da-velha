@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class JogoDaVelha {
+
+    public static void main(String[] args) {
+        Tabuleiro tabuleiro = new Tabuleiro();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bem-vindo ao Jogo da Velha!");
+        char jogadorAtual = 'X';
+
+        while (true) {
+            tabuleiro.imprimirTabuleiro();
+            System.out.println("Vez do jogador " + jogadorAtual);
+
+            int linha, coluna;
+
+            while (true) {
+                System.out.print("--Digite a linha (0, 1, 2): ");
+                linha = scanner.nextInt();
+
+                System.out.print("--Digite a coluna (0, 1, 2): ");
+                coluna = scanner.nextInt();
+
+                if (tabuleiro.ehCoordenadaValida(linha, coluna)) {
+                    if (tabuleiro.jogar(linha, coluna, jogadorAtual)) {
+                        break;
+                    } else {
+                        System.out.println("Essa posição já está ocupada. Tente novamente.");
+                    }
+                } else {
+                    System.out.println("Coordenada inválida. Digite valores entre 0 e 2.");
+                }
+            }
+
+            if (tabuleiro.verificarVencedor(jogadorAtual)) {
+                tabuleiro.imprimirTabuleiro();
+                System.out.println("Parabéns! O jogador " + jogadorAtual + " venceu!");
+                break;
+            }
+
+            if (tabuleiro.tabuleiroCompleto()) {
+                tabuleiro.imprimirTabuleiro();
+                System.out.println("O jogo terminou em empate!");
+                break;
+            }
+
+            jogadorAtual = (jogadorAtual == 'X') ? 'O' : 'X';
+        }
+
+        scanner.close();
+    }
+}

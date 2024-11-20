@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\elson.lopes\ws-jogo-da-velha\.metadata\.plugins\org.eclipse.jdt.core
+1897307586.index
+4143364679.index
+1865797976.index
