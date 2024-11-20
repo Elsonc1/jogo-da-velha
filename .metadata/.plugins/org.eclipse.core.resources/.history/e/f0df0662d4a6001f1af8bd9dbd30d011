@@ -48,22 +48,16 @@ public class JogoDaVelha {
         int entrada;
         while (true) {
             System.out.print(mensagem);
-            String linha = scanner.nextLine().trim(); // Lê a entrada e remove espaços em branco
-
-            if (linha.isEmpty()) {
-                System.out.println("Entrada inválida! Não pode ser nula ou em branco. Tente novamente.");
-                continue;
-            }
-
-            try {
-                entrada = Integer.parseInt(linha);
+            if (scanner.hasNextInt()) {
+                entrada = scanner.nextInt();
                 if (entrada >= 0 && entrada <= 2) {
                     return entrada;
                 } else {
                     System.out.println("Entrada inválida! Digite um número entre 0 e 2.");
                 }
-            } catch (NumberFormatException e) {
+            } else {
                 System.out.println("Entrada inválida! Digite um número inteiro.");
+                scanner.next();
             }
         }
     }
